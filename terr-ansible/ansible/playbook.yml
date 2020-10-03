@@ -1,0 +1,27 @@
+- name: Install Prereqs 
+  hosts: swarm-manager:swarm-worker
+  become: yes
+  gather_facts: yes
+  roles:
+    - prereqs
+    - docker-ce
+
+- name: Initialize Swarm Master
+  hosts: swarm-manager-1
+  become: yes
+  roles:
+    - swarm-master
+
+- name: Join Swarm Nodes
+  hosts: swarm-worker
+  become: yes
+  gather_facts: yes
+  roles:
+    - swarm-worker
+
+- name: Create webservice 
+  hosts: swarm-manager
+  become: yes
+  gather_facts: yes
+  roles: 
+    - nginx

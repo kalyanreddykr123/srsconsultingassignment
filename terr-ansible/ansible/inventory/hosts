@@ -1,0 +1,20 @@
+[swarm-manager-1]
+3.85.61.160 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[swarm-manager:children]
+swarm-manager-1
+
+[swarm-node1]
+52.90.125.239 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+[swarm-node2]
+34.207.59.221 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+[swarm-node3]
+18.212.232.160 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+[swarm-node4]
+54.196.128.218 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[swarm-worker:children]
+swarm-node1
+swarm-node2
+swarm-node3
+swarm-node4
